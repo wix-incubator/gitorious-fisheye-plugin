@@ -1,13 +1,11 @@
 package com.wixpress.atlassian.fisheye.plugins;
 
 import com.atlassian.fisheye.spi.admin.data.GitRepositoryData;
-import com.atlassian.fisheye.spi.admin.data.RepositoryData;
 import com.atlassian.fisheye.spi.admin.services.RepositoryAdminService;
 import com.atlassian.fisheye.spi.admin.services.RepositoryConfigException;
 import com.atlassian.sal.api.lifecycle.LifecycleAware;
 import com.atlassian.sal.api.scheduling.PluginScheduler;
 import com.google.common.collect.ImmutableMap;
-import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +43,8 @@ public class DefaultGitoriousRepositorySynchronizer implements GitoriousReposito
             if (!fisheyeRepositories.contains(repository.getName())) {
                 try {
                     repositoryAdminService.create(new GitRepositoryData(repository.getName(), repository.getUrl()));
+                    repositoryAdminService.enable(repository.getName());
+                    repositoryAdminService.start(repository.getName());
                 } catch (RepositoryConfigException e) {
                     logger.error("Failed creating a repository for Gitorious repository [{}]", repository);
                 }
