@@ -8,15 +8,17 @@
     <component-import key="repositoryAdminService" interface="com.atlassian.fisheye.spi.admin.services.RepositoryAdminService"/>
     <component-import key="renderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer"/>
     <component-import key="pluginScheduler" interface="com.atlassian.sal.api.scheduling.PluginScheduler"/>
+    <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory"/>
 
-    <component name="gitoriousSynchronizerConfig" class="com.wixpress.atlassian.fisheye.plugins.GitoriousSynchronizerConfig"/>
+    <component key="gitoriousSynchronizerConfig" class="com.wixpress.atlassian.fisheye.plugins.GitoriousSynchronizerConfig"/>
 
-    <component name="gitoriousFacade" class="com.wixpress.atlassian.fisheye.plugins.DefaultGitoriousFacade">
+    <component key="gitoriousFacade" class="com.wixpress.atlassian.fisheye.plugins.FakeGitoriousFacade">
         <interface>com.wixpress.atlassian.fisheye.plugins.GitoriousFacade</interface>
     </component>
 
-    <component name="gitoriousRepositorySynchronizer"
-               class="com.wixpress.atlassian.fisheye.plugins.DefaultGitoriousRepositorySynchronizer">
+    <component key="gitoriousRepositorySynchronizer"
+               class="com.wixpress.atlassian.fisheye.plugins.DefaultGitoriousRepositorySynchronizer"
+               system="true" public="true">
         <interface>com.wixpress.atlassian.fisheye.plugins.GitoriousRepositorySynchronizer</interface>
         <interface>com.atlassian.sal.api.lifecycle.LifecycleAware</interface>
     </component>

@@ -6,4 +6,5 @@ package com.wixpress.atlassian.fisheye.plugins;
  */
 public interface GitoriousRepositorySynchronizer {
     public void synchronize();
+    public void reschedule();
 }

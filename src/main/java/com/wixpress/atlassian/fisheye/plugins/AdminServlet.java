@@ -19,10 +19,12 @@ public class AdminServlet extends HttpServlet {
 
     private final GitoriousSynchronizerConfig config;
     private final TemplateRenderer renderer;
+    private final GitoriousRepositorySynchronizer gitoriousRepositorySynchronizer;
 
-    public AdminServlet(GitoriousSynchronizerConfig config, TemplateRenderer renderer) {
+    public AdminServlet(GitoriousSynchronizerConfig config, TemplateRenderer renderer, GitoriousRepositorySynchronizer gitoriousRepositorySynchronizer) {
         this.config = config;
         this.renderer = renderer;
+        this.gitoriousRepositorySynchronizer = gitoriousRepositorySynchronizer;
     }
 
     @Override
@@ -46,6 +48,10 @@ public class AdminServlet extends HttpServlet {
         if (StringUtils.isNumeric(interval)) {
             config.setIntervalInMillis(Long.parseLong(interval) * 60 * 1000);
         }
+
+        gitoriousRepositorySynchronizer.reschedule();
+
+        doGet(request, response);
     }
 
 }

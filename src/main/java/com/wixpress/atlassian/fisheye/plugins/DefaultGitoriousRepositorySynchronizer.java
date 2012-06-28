@@ -54,16 +54,16 @@ public class DefaultGitoriousRepositorySynchronizer implements GitoriousReposito
 
     @Override
     public void onStart() {
-        reschedule(config.getIntervalInMillis());
+        reschedule();
     }
 
-    private void reschedule(long intervalInMillis) {
+    public void reschedule() {
         pluginScheduler.scheduleJob(
                 GitoriousSyncTask.class.getSimpleName() + ".job",
                 GitoriousSyncTask.class,
                 ImmutableMap.<String, Object>of(GitoriousRepositorySynchronizer.class.getSimpleName(), this),
                 new Date(),
-                intervalInMillis
+                config.getIntervalInMillis()
         );
     }
 }
