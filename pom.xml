@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.wixpress.atlassian</groupId>
+    <artifactId>gitorious-fisheye-plugin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <organization>
+        <name>Wix.com</name>
+        <url>http://www.wix.com/</url>
+    </organization>
+
+    <name>gitorious-fisheye-plugin</name>
+    <description>This is the com.wixpress.atlassian:gitorious-fisheye-plugin plugin for Atlassian FishEye/Crucible.</description>
+    <packaging>atlassian-plugin</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.fisheye</groupId>
+            <artifactId>atlassian-fisheye-api</artifactId>
+            <version>${fecru.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.crucible</groupId>
+            <artifactId>atlassian-crucible-scmutils</artifactId>
+            <version>${fecru.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.sal</groupId>
+            <artifactId>sal-api</artifactId>
+            <version>2.7.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.templaterenderer</groupId>
+            <artifactId>atlassian-template-renderer-api</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>12.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-fecru-plugin</artifactId>
+                <version>${amps.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <productVersion>${fecru.version}</productVersion>
+                    <productDataVersion>${fecru.data.version}</productDataVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <fecru.version>2.5.4-20110408064401</fecru.version>
+        <fecru.data.version>2.5.2-20110307050326</fecru.data.version>
+        <amps.version>3.11</amps.version>
+    </properties>
+
+    <repositories>
+         <repository>
+             <id>atlassian-public</id>
+             <name>Atlassian Public</name>
+             <url>https://maven.atlassian.com/content/groups/public/</url>
+             <releases>
+                 <enabled>true</enabled>
+             </releases>
+         </repository>
+     </repositories>
+
+</project>

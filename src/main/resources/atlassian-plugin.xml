@@ -1,0 +1,31 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    </plugin-info>
+
+    <component-import key="repositoryAdminService"
+                      interface="com.atlassian.fisheye.spi.admin.services.RepositoryAdminService"/>
+    <component-import key="renderer"
+                      interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer"/>
+
+    <component name="gitoriousFacade" class="com.wixpress.atlassian.fisheye.plugins.DefaultGitoriousFacade">
+        <interface>com.wixpress.atlassian.fisheye.plugins.GitoriousFacade</interface>
+    </component>
+
+    <component name="gitoriousRepositorySynchronizer"
+               class="com.wixpress.atlassian.fisheye.plugins.DefaultGitoriousRepositorySynchronizer">
+        <interface>com.wixpress.atlassian.fisheye.plugins.GitoriousRepositorySynchronizer</interface>
+    </component>
+
+    <servlet key="admin-servlet" class="com.wixpress.atlassian.fisheye.plugins.AdminServlet">
+        <url-pattern>/gitorious/admin</url-pattern>
+    </servlet>
+
+    <web-item key="admin-screen" name="Gitorious Sync Admin" section="system.admin/global" weight="10" application="fisheye">
+        <description>Link to Gitorious sync admin page.</description>
+        <label key="Gitorious Sync Admin"/>
+        <link linkId="gitorious-sync-admin-link">/plugins/servlet/gitorious/admin</link>
+    </web-item>
+</atlassian-plugin>
