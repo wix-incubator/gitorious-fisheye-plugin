@@ -8,7 +8,8 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
  */
 public class GitoriousSynchronizerConfig {
 
-    public static final String GITORIOUS_URL = "gitoriousUrl";
+    public static final String URL = "gitoriousUrl";
+    public static final String INTERVAL = "gitoriousScanIntervalInMillis";
 
     private final PluginSettingsFactory pluginSettingsFactory;
 
@@ -17,10 +18,18 @@ public class GitoriousSynchronizerConfig {
     }
 
     public String getGitoriousUrl() {
-        return (String) pluginSettingsFactory.createGlobalSettings().get(GITORIOUS_URL);
+        return (String) pluginSettingsFactory.createGlobalSettings().get(URL);
     }
 
     public void setGitoriousUrl(String url) {
-        pluginSettingsFactory.createGlobalSettings().put(GITORIOUS_URL, url);
+        pluginSettingsFactory.createGlobalSettings().put(URL, url);
+    }
+
+    public long getIntervalInMillis() {
+        return (Long) pluginSettingsFactory.createGlobalSettings().get(INTERVAL);
+    }
+
+    public void setIntervalInMillis(long interval) {
+        pluginSettingsFactory.createGlobalSettings().put(INTERVAL, interval);
     }
 }

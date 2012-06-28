@@ -5,10 +5,11 @@
         <vendor name="${project.organization.name}" url="${project.organization.url}"/>
     </plugin-info>
 
-    <component-import key="repositoryAdminService"
-                      interface="com.atlassian.fisheye.spi.admin.services.RepositoryAdminService"/>
-    <component-import key="renderer"
-                      interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer"/>
+    <component-import key="repositoryAdminService" interface="com.atlassian.fisheye.spi.admin.services.RepositoryAdminService"/>
+    <component-import key="renderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer"/>
+    <component-import key="pluginScheduler" interface="com.atlassian.sal.api.scheduling.PluginScheduler"/>
+
+    <component name="gitoriousSynchronizerConfig" class="com.wixpress.atlassian.fisheye.plugins.GitoriousSynchronizerConfig"/>
 
     <component name="gitoriousFacade" class="com.wixpress.atlassian.fisheye.plugins.DefaultGitoriousFacade">
         <interface>com.wixpress.atlassian.fisheye.plugins.GitoriousFacade</interface>
@@ -17,6 +18,7 @@
     <component name="gitoriousRepositorySynchronizer"
                class="com.wixpress.atlassian.fisheye.plugins.DefaultGitoriousRepositorySynchronizer">
         <interface>com.wixpress.atlassian.fisheye.plugins.GitoriousRepositorySynchronizer</interface>
+        <interface>com.atlassian.sal.api.lifecycle.LifecycleAware</interface>
     </component>
 
     <servlet key="admin-servlet" class="com.wixpress.atlassian.fisheye.plugins.AdminServlet">
