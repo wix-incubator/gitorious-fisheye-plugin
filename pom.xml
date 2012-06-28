@@ -16,6 +16,20 @@
     <description>This is the com.wixpress.atlassian:gitorious-fisheye-plugin plugin for Atlassian FishEye/Crucible.</description>
     <packaging>atlassian-plugin</packaging>
 
+    <developers>
+        <developer>
+            <name>Shai Yallin</name>
+            <organization>Wix</organization>
+            <organizationUrl>http://wix.io</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:wix/gitorious-fisheye-plugin.git</connection>
+        <url>scm:git:git@github.com:wix/gitorious-fisheye-plugin.git</url>
+        <developerConnection>scm:git:git@github.com:wix/gitorious-fisheye-plugin.git</developerConnection>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
