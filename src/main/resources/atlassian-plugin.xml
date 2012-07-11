@@ -12,7 +12,7 @@
 
     <component key="gitoriousSynchronizerConfig" class="com.wixpress.atlassian.fisheye.plugins.GitoriousSynchronizerConfig"/>
 
-    <component key="gitoriousFacade" class="com.wixpress.atlassian.fisheye.plugins.FakeGitoriousFacade">
+    <component key="gitoriousFacade" class="com.wixpress.atlassian.fisheye.plugins.HttpGitoriousFacade">
         <interface>com.wixpress.atlassian.fisheye.plugins.GitoriousFacade</interface>
     </component>
 

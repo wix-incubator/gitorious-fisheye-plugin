@@ -40,11 +40,15 @@ public class DefaultGitoriousRepositorySynchronizer implements GitoriousReposito
         Set<String> fisheyeRepositories = repositoryAdminService.getNames();
 
         for (GitoriousRepository repository : gitoriousRepositories) {
-            if (!fisheyeRepositories.contains(repository.getName())) {
+            if (!fisheyeRepositories.contains(repository.getRepo())) {
                 try {
-                    repositoryAdminService.create(new GitRepositoryData(repository.getName(), repository.getUrl()));
-                    repositoryAdminService.enable(repository.getName());
-                    repositoryAdminService.start(repository.getName());
+                    try {
+                        repositoryAdminService.create(new GitRepositoryData(repository.getRepo(), repository.getUrl()));
+                        repositoryAdminService.enable(repository.getRepo());
+                        repositoryAdminService.start(repository.getRepo());
+                    } catch (IllegalArgumentException e) {
+                        logger.error("Trying to create an existing repository " + repository.getRepo());
+                    }
                 } catch (RepositoryConfigException e) {
                     logger.error("Failed creating a repository for Gitorious repository [{}]", repository);
                 }
